@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper and Scissors</title>
+</head>
+<body>
+    
+    <script>
+
+        
+        let playerSelection;
+        let computerSelection;
+        console.log(game(clsInput(playerSelection),clsInput(computerSelection)));
+
+        
+        function game(player,computer) 
+        {
+            
+            let decision;
+            let computerWins = 0; /* A counter for the wins of each one*/
+            let playerWins = 0;
+            for(let i = 0;i<5;i++) /*We play 5 times to see the better*/
+            {
+                player = prompt(`Rock, Paper or Scissors?`); /*We ask every round a new option to play*/
+                computer = computerPlay();
+                switch(player) /*Define the winner of the round*/
+                {
+                    case `rock`:
+                        switch(computer)
+                        {
+                            case `paper`:
+                            console.log(`You Lose! Paper beats Rock`);
+                            computerWins++; /*add the win to the computer*/
+                            break;
+                            case `scissors`:
+                            console.log(`You Win! Rock beats Scissors`);
+                            playerWins++; /*add the win the player*/
+                            break;
+                            default:
+                            console.log(`It's a draw`);
+                        }
+
+                    break;
+                    case `paper`:
+                        switch(computer)
+                        {
+                            case `scissors`:
+                            console.log(`You Lose! Scissors beats Paper`);
+                            computerWins++;
+                            break;
+                            case `rock`:
+                            console.log(`You Win! Paper beats Rock`);
+                            playerWins++;
+                            break;
+                            default:
+                            console.log(`It's a draw`);
+                        }
+                    break;
+                    case `scissors`:
+                        switch(computer)
+                        {
+                            case `rock`:
+                            console.log(`You Lose! Rock beats Scissors`);
+                            computerWins++;
+                            break;
+                            case `paper`:
+                            console.log(`You Win! Scissors beats Paper`);
+                            playerWins++;
+                            break;
+                            default:
+                            console.log(`It's a draw`);
+                        }
+                        return decision;
+                    break;
+                    default:
+                    return `Your option is not valid, sorry`;
+                }  
+            }
+            if(playerWins>computerWins){return `The winner is YOU!!!, Congrats!`;} /*We decide the player with more wins and return the who win*/
+            else if(playerWins<computerWins){return `The winner is the computer!!!, Sorry mate, good luck next time!`;}
+            else{return `It's a draw!!, nice job!`;}     
+        }
+        function clsInput(choice) 
+        {
+            if (typeof(choice) == `string`){return choice.toLowerCase();}
+            else{return `This is not a string`;}
+        }
+        function computerPlay() /*Setting up random selection of option for the machine */
+        {
+            let select = Math.round((Math.random()*2+1));
+            switch(select)
+            {
+                case 1:
+                return `rock`;
+                break;
+                case 2:
+                return `paper`;
+                break;
+                default:
+                return `scissors`;
+
+            }
+        }
+    </script>
+</body>
+</html>
